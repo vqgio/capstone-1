@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -61,5 +64,17 @@ public class Main {
         String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
         saveTransaction(transaction);
         System.out.println("Deposit Added Successfully!");
+    }
+
+    private static void saveTransaction(String transaction) {
+        try (BufferedWriter writer = new BufferedWriter( new FileWriter(filePath, true))) {
+            writer.write(transaction + "\n");
+            writer.close();
+            } catch (IOException e) {
+            System.out.println("ERROR, Transaction could not be saved!" + e.getMessage());
+        }
+    }
+    private static void displayLedger() {
+
     }
 }
