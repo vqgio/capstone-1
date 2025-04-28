@@ -30,4 +30,14 @@ public class Main {
             }
         }
     }
+    private static void displayHomeScreen() {
+        System.out.println("- Financial Transaction Tracker -");
+        System.out.println("D) Add Deposit");
+        System.out.println("P) Make A Payment(Debit Only)");
+        System.out.println("L) Display Ledger");
+        System.out.println("X) Exit The Application");
+        System.out.print("Choose from the following options: ");
+    }
+
+
 }
