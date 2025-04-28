@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean(running) = true;
+        boolean running = true;
         while(running) {
             displayHomeScreen();
             String choice = scanner.nextLine().toUpperCase();
@@ -39,5 +41,25 @@ public class Main {
         System.out.print("Choose from the following options: ");
     }
 
+    private static void addDeposit() {
+        System.out.println("- Add Deposit -");
+        LocalDateTime now = LocalDateTime.now();
+        String date  = now.format(yearMonthFormatter);
+        String time = now.format(hourMinuteFormatter);
 
+        System.out.print("Enter Description Of Deposit: ");
+        String description = scanner.nextLine();
+        System.out.print("Enter Vendor Name: ");
+        String vendor = scanner.nextLine();
+        System.out.print("Enter Amount: ");
+        double amount = Double.parseDouble(scanner.nextLine());
+
+        if (amount < 0) {
+            System.out.println("Deposit ammount must be over $0");
+            return;
+        }
+        String transaction = date + "|" + time "|" + description + "|" + vendor "|" + amount;
+        saveTransaction(transaction);
+        System.out.println("Deposit Added Successfully!");
+    }
 }
