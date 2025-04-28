@@ -28,7 +28,7 @@ public class Main {
                     System.out.println("Logging out...Have a nice day!");
                     break;
                 default:
-                    System.out.println("Sorry that is not an option! Please try again. ")
+                    System.out.println("Sorry that is not an option! Please try again. ");
             }
         }
     }
@@ -58,7 +58,7 @@ public class Main {
             System.out.println("Deposit ammount must be over $0");
             return;
         }
-        String transaction = date + "|" + time "|" + description + "|" + vendor "|" + amount;
+        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
         saveTransaction(transaction);
         System.out.println("Deposit Added Successfully!");
     }
