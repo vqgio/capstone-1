@@ -1,7 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -12,6 +11,7 @@ public class Main {
     private static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static Scanner scanner = new Scanner(System.in);
 
+    //home screen setup
     public static void main(String[] args) {
         boolean running = true;
         while(running) {
@@ -77,6 +77,7 @@ public class Main {
     }
     private static void makePayment() {
         System.out.println("- Make Payment -");
+        System.out.println("Please remember this is a debit account only action");
         LocalDateTime now = LocalDateTime.now();
         String date = now.format(yearMonthFormatter);
         String time = now.format(hourMinuteFormatter);
@@ -85,17 +86,46 @@ public class Main {
         String description = scanner.nextLine();
         System.out.print("Enter Vendor Name: ");
         String vendor = scanner.nextLine();
-        System.out.print("Enter Amount:");
+        System.out.print("Enter Amount: ");
         double amount = Double.parseDouble(scanner.nextLine());
         if (amount < 0) {
             System.out.println("Please enter an amount over $0");
             return;
         }
-        String transaction = date + "|" + time "|" + description + "|" + vendor + "|" + (=amount);
+        //allows to enter negative
+        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + (=amount);
         saveTransaction(transaction);
     }
 
     private static void displayLedger() {
+        boolean inLedger = true;
+        while (inLedger) {
+            System.out.println("- Ledger -");
+            System.out.println("A) All");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+            System.out.print("Please choose an option");
+            String choice scanner.nextLine().toUpperCase();
 
+            switch (choice) {
+                case "A":
+                    displayAllTransactions();
+                    break;
+                case "D":
+                    displayDeposits();
+                    break;
+                case "P":
+                    displayPayments();
+                case "R":
+                    displayReportsScreen();
+                case "H":
+                    inLedger = false;
+                    break;
+                default:
+                    System.out.println("Sorry that is not an option, please choose from the following. ");
+            }
+        }
     }
 }
