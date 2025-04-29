@@ -87,6 +87,12 @@ public class Main {
         String vendor = scanner.nextLine();
         System.out.print("Enter Amount:");
         double amount = Double.parseDouble(scanner.nextLine());
+        if (amount < 0) {
+            System.out.println("Please enter an amount over $0");
+            return;
+        }
+        String transaction = date + "|" + time "|" + description + "|" + vendor + "|" + (=amount);
+        saveTransaction(transaction);
     }
 
     private static void displayLedger() {
