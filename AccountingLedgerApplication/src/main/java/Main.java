@@ -1,8 +1,13 @@
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -93,7 +98,7 @@ public class Main {
             return;
         }
         //allows to enter negative
-        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + (=amount);
+        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + (-amount);
         saveTransaction(transaction);
     }
 
@@ -106,8 +111,8 @@ public class Main {
             System.out.println("P) Payments");
             System.out.println("R) Reports");
             System.out.println("H) Home");
-            System.out.print("Please choose an option");
-            String choice scanner.nextLine().toUpperCase();
+            System.out.print("Please choose an option: ");
+            String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
                 case "A":
@@ -127,5 +132,80 @@ public class Main {
                     System.out.println("Sorry that is not an option, please choose from the following. ");
             }
         }
+    }
+    private static List<String> loadTransactions() {
+        List<String> transactions = new ArrayList<>();
+        try {
+            File file = new File(filePath);
+            Scanner fileScanner = new Scanner(file);
+
+            while (fileScanner.hasNextLine()) {
+                transactions.add(fileScanner.nextLine());
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("no transactions found, Make a transaction first.");
+        }
+        Collections.reverse(transactions);
+        return transactions;
+    }
+    private static void displayAllTransactions() {
+        System.out.println("- All Transactions -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
+
+        List<String> transactions = loadTransactions();
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+            }
+        }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
+    }
+    private static void displayDeposits() {
+        System.out.println("- Deposits -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
+
+        List<String> transactions = loadTransactions();
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                double amount = Double.parseDouble(parts[4]);
+                if (amount > 0) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
+
+    }
+    private static void displayPayments() {
+        System.out.println("- Deposits -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
+
+        List<String> transactions = loadTransactions();
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                double amount = Double.parseDouble(parts[4]);
+                if (amount < 0) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
+
+    }
+    private static void displayReportsScreen() {
+
     }
 }
