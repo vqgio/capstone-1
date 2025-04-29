@@ -26,6 +26,7 @@ public class Main {
                     break;
                 case "L":
                     displayLedger();
+                    break;
                 case "X":
                     running = false;
                     System.out.println("Logging out...Have a nice day!");
@@ -58,7 +59,7 @@ public class Main {
         double amount = Double.parseDouble(scanner.nextLine());
 
         if (amount < 0) {
-            System.out.println("Deposit ammount must be over $0");
+            System.out.println("Deposit amount must be over $0");
             return;
         }
         String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
@@ -74,6 +75,20 @@ public class Main {
             System.out.println("ERROR, Transaction could not be saved!" + e.getMessage());
         }
     }
+    private static void makePayment() {
+        System.out.println("- Make Payment -");
+        LocalDateTime now = LocalDateTime.now();
+        String date = now.format(yearMonthFormatter);
+        String time = now.format(hourMinuteFormatter);
+
+        System.out.print("Enter Description Of Payment: ");
+        String description = scanner.nextLine();
+        System.out.print("Enter Vendor Name: ");
+        String vendor = scanner.nextLine();
+        System.out.print("Enter Amount:");
+        double amount = Double.parseDouble(scanner.nextLine());
+    }
+
     private static void displayLedger() {
 
     }
