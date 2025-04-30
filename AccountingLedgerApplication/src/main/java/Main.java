@@ -241,15 +241,31 @@ public class Main {
         }
     }
     private static void displayMonthToDate() {
+        System.out.println("- Month To Date Report -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
 
     }
     private static void displayPreviousMonth() {
+        System.out.println("- Previous Month Report -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
 
     }
     private static void displayYearToDate() {
+        System.out.println("- Year To Date Report -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
 
     }
     private static void displayPreviousYear() {
+        System.out.println("- Previous Year Report -");
+        //formatting to make it look nice, newline characters and format specifiers
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
 
     }
     private static void searchVendor() {
