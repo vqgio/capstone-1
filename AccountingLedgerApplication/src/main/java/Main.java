@@ -140,6 +140,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("No transaction found, Make a transaction first. ");
         }
+        //shows newest transactions first by reversing collection
         Collections.reverse(transactions);
         return transactions;
 
@@ -215,7 +216,43 @@ public class Main {
 
             String choice = scanner.nextLine();
 
-
+            switch (choice) {
+                case "1":
+                    displayMonthToDate();
+                    break;
+                case "2":
+                    displayPreviousMonth();
+                    break;
+                case "3":
+                    displayYearToDate();
+                    break;
+                case "4":
+                    displayPreviousYear();
+                    break;
+                case "5":
+                    searchVendor();
+                    break;
+                case "0":
+                    reports = false;
+                    break;
+                default:
+                    System.out.println("Sorry, please pick from the following actions.");
+            }
         }
+    }
+    private static void displayMonthToDate() {
+
+    }
+    private static void displayPreviousMonth() {
+
+    }
+    private static void displayYearToDate() {
+
+    }
+    private static void displayPreviousYear() {
+
+    }
+    private static void searchVendor() {
+
     }
 }
