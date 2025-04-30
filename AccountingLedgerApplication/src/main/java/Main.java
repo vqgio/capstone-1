@@ -1,8 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    //final bc they are not going to change
     private static final String filePath = "C:/Users/rsant/pluralsight/capstone-1/AccountingLedgerApplication/src/main/resources/transactions.csv";
     private static final DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -135,20 +132,17 @@ public class Main {
     }
     private static List<String> loadTransactions() {
         List<String> transactions = new ArrayList<>();
-        try {
-            File file = new File(filePath);
-            Scanner fileScanner = new Scanner(file);
-
-            while (fileScanner.hasNextLine()) {
-                transactions.add(fileScanner.nextLine());
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                transactions.add(line);
             }
-            fileScanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("no transactions found, Make a transaction first.");
+        } catch (IOException e) {
+            System.out.println("No transaction found, Make a transaction first. ");
         }
-        //used to show newest transactions first by reserving
         Collections.reverse(transactions);
         return transactions;
+
     }
     private static void displayAllTransactions() {
         System.out.println("- All Transactions -");
@@ -220,7 +214,8 @@ public class Main {
             System.out.print("Please choose from the following options");
 
             String choice = scanner.nextLine();
-        }
 
+
+        }
     }
 }
