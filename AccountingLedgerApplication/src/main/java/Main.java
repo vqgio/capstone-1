@@ -146,6 +146,7 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("no transactions found, Make a transaction first.");
         }
+        //used to show newest transactions first by reserving
         Collections.reverse(transactions);
         return transactions;
     }
@@ -162,6 +163,7 @@ public class Main {
                 System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
             }
         }
+        //sends you back to ledger menu
         System.out.println("Please press Enter to continue...");
         scanner.nextLine();
     }
@@ -206,6 +208,19 @@ public class Main {
 
     }
     private static void displayReportsScreen() {
+        boolean reports = true;
+        while (reports) {
+            System.out.println("- Reports -");
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search By Vendor");
+            System.out.println("0) Return to Ledger Menu");
+            System.out.print("Please choose from the following options");
+
+            String choice = scanner.nextLine();
+        }
 
     }
 }
