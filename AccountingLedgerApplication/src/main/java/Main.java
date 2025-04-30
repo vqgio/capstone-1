@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -246,12 +247,17 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
+        List<String> transaction = loadTransactions();
+        LocalDate now = LocalDate.now()
     }
     private static void displayPreviousMonth() {
         System.out.println("- Previous Month Report -");
         //formatting to make it look nice, newline characters and format specifiers
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
+
+        List<String> transaction = loadTransactions();
+        LocalDate now = LocalDate.now()
 
     }
     private static void displayYearToDate() {
@@ -260,6 +266,8 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
+        List<String> transaction = loadTransactions();
+        LocalDate now = LocalDate.now()
     }
     private static void displayPreviousYear() {
         System.out.println("- Previous Year Report -");
@@ -267,6 +275,8 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
+        List<String> transaction = loadTransactions();
+        LocalDate now = LocalDate.now()
     }
     private static void searchVendor() {
 
