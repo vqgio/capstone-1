@@ -286,8 +286,18 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
-        List<String> transaction = loadTransactions();
+        List<String> transactions = loadTransactions();
         LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                LocalDate transactionDate = LocalDate.parse(parts[0], yearMonthFormatter);
+                if (transactionDate.getYear() == currentYear) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
     }
     private static void displayPreviousYear() {
         System.out.println("- Previous Year Report -");
