@@ -216,7 +216,7 @@ public class Main {
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search By Vendor");
-            System.out.println("R) Return");
+            System.out.println("H) Home");
             System.out.print("Please choose from the following options: ");
 
             String choice = scanner.nextLine().toUpperCase();
@@ -237,7 +237,7 @@ public class Main {
                 case "5":
                     searchVendor();
                     break;
-                case "R":
+                case "H":
                     reports = false;
                     break;
                 default:
@@ -331,6 +331,23 @@ public class Main {
         scanner.nextLine();
     }
     private static void searchVendor() {
+        System.out.print("\nPlease enter vendor name to search: ");
+        String vendorSearch = scanner.nextLine().toLowerCase();
 
+        System.out.println("- Results For Vendor: "+ vendorSearch + "-");
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
+
+        List<String> transactions = loadTransactions();
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if(parts.length == 5) {
+                if (parts[3].toLowerCase().contains(vendorSearch)) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
     }
 }
