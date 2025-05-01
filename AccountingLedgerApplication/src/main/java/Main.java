@@ -13,6 +13,7 @@ public class Main {
     private static final String filePath = "C:/Users/rsant/pluralsight/capstone-1/AccountingLedgerApplication/src/main/resources/transactions.csv";
     private static final DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    //can be resigned for various tasks through the code
     private static Scanner scanner = new Scanner(System.in);
 
     //home screen setup
@@ -66,6 +67,7 @@ public class Main {
             System.out.println("Deposit amount must be over $0");
             return;
         }
+        //saves the transaction format for deposits
         String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
         saveTransaction(transaction);
         System.out.println("Deposit Added Successfully!");
@@ -96,7 +98,7 @@ public class Main {
             System.out.println("Please enter an amount over $0");
             return;
         }
-        //allows to enter negative
+        //allows to enter negative and saves format as negative for make payment
         String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + (-amount);
         saveTransaction(transaction);
     }
@@ -153,6 +155,7 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
+        //must call array list everytime to refresh csv file inputs
         List<String> transactions = loadTransactions();
         for (String transaction : transactions) {
             String[] parts = transaction.split("\\|");
@@ -260,6 +263,8 @@ public class Main {
                 }
             }
         }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
     }
     private static void displayPreviousMonth() {
         System.out.println("- Previous Month Report -");
@@ -279,6 +284,8 @@ public class Main {
                 }
             }
         }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
     }
     private static void displayYearToDate() {
         System.out.println("- Year To Date Report -");
@@ -298,6 +305,8 @@ public class Main {
                 }
             }
         }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
     }
     private static void displayPreviousYear() {
         System.out.println("- Previous Year Report -");
@@ -305,8 +314,21 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
-        List<String> transaction = loadTransactions();
+        List<String> transactions = loadTransactions();
         LocalDate now = LocalDate.now();
+        int previousYear = now.getYear() - 1;
+
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                LocalDate transactionDate = LocalDate.parse(parts[0], yearMonthFormatter);
+                if (transactionDate.getYear() == previousYear) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
     }
     private static void searchVendor() {
 
