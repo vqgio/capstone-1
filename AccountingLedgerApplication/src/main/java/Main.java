@@ -1,6 +1,7 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -212,10 +213,10 @@ public class Main {
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search By Vendor");
-            System.out.println("0) Return to Ledger Menu");
-            System.out.print("Please choose from the following options");
+            System.out.println("R) Return");
+            System.out.print("Please choose from the following options: ");
 
-            String choice = scanner.nextLine();
+            String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
                 case "1":
@@ -233,7 +234,7 @@ public class Main {
                 case "5":
                     searchVendor();
                     break;
-                case "0":
+                case "R":
                     reports = false;
                     break;
                 default:
@@ -247,8 +248,18 @@ public class Main {
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
 
-        List<String> transaction = loadTransactions();
-        LocalDate now = LocalDate.now()
+        List<String> transactions = loadTransactions();
+        LocalDate now = LocalDate.now();
+        YearMonth currentMonth = YearMonth.from(now);
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                LocalDate transactionDate = LocalDate.parse(parts[0], yearMonthFormatter);
+                if (YearMonth.from(transactionDate).equals(currentMonth)) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
     }
     private static void displayPreviousMonth() {
         System.out.println("- Previous Month Report -");
@@ -257,8 +268,7 @@ public class Main {
         System.out.println("|----------------------------------------------------------------------|");
 
         List<String> transaction = loadTransactions();
-        LocalDate now = LocalDate.now()
-
+        LocalDate now = LocalDate.now();
     }
     private static void displayYearToDate() {
         System.out.println("- Year To Date Report -");
@@ -267,7 +277,7 @@ public class Main {
         System.out.println("|----------------------------------------------------------------------|");
 
         List<String> transaction = loadTransactions();
-        LocalDate now = LocalDate.now()
+        LocalDate now = LocalDate.now();
     }
     private static void displayPreviousYear() {
         System.out.println("- Previous Year Report -");
@@ -276,7 +286,7 @@ public class Main {
         System.out.println("|----------------------------------------------------------------------|");
 
         List<String> transaction = loadTransactions();
-        LocalDate now = LocalDate.now()
+        LocalDate now = LocalDate.now();
     }
     private static void searchVendor() {
 
