@@ -7,3 +7,7 @@ This is a command-line interface (CLI) application used to manage and track fina
 - allow to filter reports by month or year
 - filter to find transactions by vendor
 
+## How it works!
+All transactions are saved and stored in a file named transactions.csv in a format that is easy to read and nicely organized
+Date | Time | Description | Vendor | Amount
+
