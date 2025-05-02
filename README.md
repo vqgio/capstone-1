@@ -33,7 +33,7 @@ The Ledger Menu gives the user 5 clear options
 
 ![image](https://github.com/user-attachments/assets/d8b779f7-d65c-4304-b871-1c59c004a291)
 
-🤯 Interesting code!
+## 🤯 Interesting code!
 
 By creating a string named "vendorSearch" and combining it with a scanner class you can easily search by vendor.
 This code works by using the scanner class to temporarily save the user input and plug it into an "if" statement focusing on if parts[3] contains the user input saved by "vendorSeach" 
