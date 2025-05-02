@@ -14,4 +14,5 @@ All transactions are saved and stored in a file named transactions.csv in a form
 ## Different menus in Accounting Ledger: 
 🏠 Home Screen Menu:
 Gives the user 4 clear options to start using the application, when selecting make deposit/payment, the appliccation will prompt you to enter description, vendor name, and amount.
+
 ![image](https://github.com/user-attachments/assets/d0a61d31-9cb8-41e4-940a-51edd9b63ef4)
