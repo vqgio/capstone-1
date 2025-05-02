@@ -9,5 +9,5 @@ This is a command-line interface (CLI) application used to manage and track fina
 
 ## How it works!
 All transactions are saved and stored in a file named transactions.csv in a format that is easy to read and nicely organized
-Date | Time | Description | Vendor | Amount
+- Date | Time | Description | Vendor | Amount
 
