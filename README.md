@@ -18,6 +18,7 @@ All transactions are saved and stored in a file named transactions.csv in a form
 ![image](https://github.com/user-attachments/assets/d0a61d31-9cb8-41e4-940a-51edd9b63ef4)
 
 📒 Ledger Menu:
+
 The Ledger Menu gives the user 5 clear options 
 - You can select "All" and it will give you all transactions saved in the transactions.csv file, no matter if they are Deposits or Payments.
 - The options below that show transactions filtered based on payment or deposit category
