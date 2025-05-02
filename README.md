@@ -9,7 +9,9 @@ This is a command-line interface (CLI) application used to manage and track fina
 
 ## ⚙️ How it works!
 All transactions are saved and stored in a file named transactions.csv in a format that is easy to read and nicely organized
-- Date | Time | Description | Vendor | Amount
+
+![image](https://github.com/user-attachments/assets/49f2bef2-cc8d-4029-ba15-b62880e6dd57)
+
 
 ## Different menus in Accounting Ledger: 
 🏠 Home Screen Menu:
