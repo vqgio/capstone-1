@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static model.Transaction.*;
+import static service.ReportService.*;
 
 public class Main {
     //final bc they are not going to change

@@ -8,7 +8,7 @@ import java.util.List;
 import static model.Transaction.*;
 
 public class ReportService {
-    private static void displayMonthToDate() {
+    public static void displayMonthToDate() {
         System.out.println("- Month To Date Report -");
         //formatting to make it look nice, newline characters and format specifiers
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -32,7 +32,7 @@ public class ReportService {
         scanner.nextLine();
     }
 
-    private static void displayPreviousMonth() {
+    public static void displayPreviousMonth() {
         System.out.println("- Previous Month Report -");
         //formatting to make it look nice, newline characters and format specifiers
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -55,7 +55,7 @@ public class ReportService {
         scanner.nextLine();
     }
 
-    private static void displayYearToDate() {
+    public static void displayYearToDate() {
         System.out.println("- Year To Date Report -");
         //formatting to make it look nice, newline characters and format specifiers
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -77,7 +77,7 @@ public class ReportService {
         scanner.nextLine();
     }
 
-    private static void displayPreviousYear() {
+    public static void displayPreviousYear() {
         System.out.println("- Previous Year Report -");
         //formatting to make it look nice, newline characters and format specifiers
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -100,7 +100,7 @@ public class ReportService {
         scanner.nextLine();
     }
 
-    private static void searchVendor() {
+    public static void searchVendor() {
         //Explanation to code is in readme file
         System.out.print("\nPlease enter vendor name to search: ");
         String vendorSearch = scanner.nextLine().toLowerCase();
