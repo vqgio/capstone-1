@@ -1,8 +1,8 @@
-package com.yourname.ledger.ui;
+package com.pluralsight.ledger.ui;
 
-import com.yourname.ledger.model.Transaction;
-import com.yourname.ledger.service.TransactionService;
-import com.yourname.ledger.service.ReportService;
+import com.pluralsight.ledger.model.Transaction;
+import com.pluralsight.ledger.service.TransactionService;
+import com.pluralsight.ledger.service.ReportService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
