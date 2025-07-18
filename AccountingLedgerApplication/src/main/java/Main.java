@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import static model.Transaction.*;
+
 public class Main {
     //final bc they are not going to change
     private static final String filePath = "C:/Users/rsant/pluralsight/capstone-1/AccountingLedgerApplication/src/main/resources/transactions.csv";
