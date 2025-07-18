@@ -16,7 +16,6 @@ public class Main {
     //can be resigned for various tasks through the code
     private static Scanner scanner = new Scanner(System.in);
 
-
     //home screen setup
     public static void main(String[] args) {
         boolean appOpen = true;
