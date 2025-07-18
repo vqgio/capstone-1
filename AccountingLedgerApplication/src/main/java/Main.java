@@ -95,6 +95,7 @@ public class Main {
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search By Vendor");
+            System.out.println("6) Custom Search");
             System.out.println("H) Home");
             System.out.print("Please choose from the following options: ");
 
@@ -115,6 +116,9 @@ public class Main {
                     break;
                 case "5":
                     searchVendor();
+                    break;
+                case "6":
+                    customSearch();
                     break;
                 case "H":
                     reports = false;

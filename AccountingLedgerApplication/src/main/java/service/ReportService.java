@@ -121,4 +121,33 @@ public class ReportService {
         System.out.println("Please press Enter to continue...");
         scanner.nextLine();
     }
+    public static void customSearch() {
+        System.out.print("\nPlease enter search term: ");
+        String searchTerm = scanner.nextLine().toLowerCase();
+
+        System.out.println("- Results Matching: " + searchTerm + " -");
+        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("|----------------------------------------------------------------------|");
+
+        List<String> transactions = loadTransactions();
+        for (String transaction : transactions) {
+            String[] parts = transaction.split("\\|");
+            if (parts.length == 5) {
+                boolean matchFound = false;
+                for (String part : parts) {
+                    if (part.toLowerCase().contains(searchTerm)) {
+                        matchFound = true;
+                        break;
+                    }
+                }
+                if (matchFound) {
+                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
+                }
+            }
+        }
+
+        System.out.println("Please press Enter to continue...");
+        scanner.nextLine();
+    }
+
 }
