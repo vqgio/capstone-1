@@ -50,65 +50,6 @@ public class Main {
         System.out.print("Choose from the following options: ");
     }
 
-    private static void addDeposit() {
-        System.out.println("- Add Deposit -");
-        LocalDateTime now = LocalDateTime.now();
-        //using local time and date and formatting
-        String date  = now.format(yearMonthFormatter);
-        String time = now.format(hourMinuteFormatter);
-
-        System.out.print("Enter Description Of Deposit: ");
-        String description = scanner.nextLine();
-        System.out.print("Enter Vendor Name: ");
-        String vendor = scanner.nextLine();
-        System.out.print("Enter Amount: ");
-
-        //turn string into a double for amount
-        double amount = Double.parseDouble(scanner.nextLine());
-
-        //defensive coding to ensure amount is valid
-        if (amount < 0) {
-            System.out.println("Deposit amount must be over $0");
-            return;
-        }
-        //saves the transaction format for deposits
-        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
-        saveTransaction(transaction);
-        System.out.println("Deposit Added Successfully!");
-    }
-
-    private static void saveTransaction(String transaction) {
-        try (BufferedWriter writer = new BufferedWriter( new FileWriter(filePath, true))) {
-            writer.write(transaction + "\n");
-            writer.close();
-            } catch (IOException e) {
-            System.out.println("ERROR, Transaction could not be saved!" + e.getMessage());
-        }
-    }
-    private static void makePayment() {
-        System.out.println("- Make Payment -");
-        System.out.println("Please remember this is a debit account only action");
-        LocalDateTime now = LocalDateTime.now();
-        String date = now.format(yearMonthFormatter);
-        String time = now.format(hourMinuteFormatter);
-
-        System.out.print("Enter Description Of Payment: ");
-        String description = scanner.nextLine();
-        System.out.print("Enter Vendor Name: ");
-        String vendor = scanner.nextLine();
-        System.out.print("Enter Amount: ");
-        double amount = Double.parseDouble(scanner.nextLine());
-
-        //defensive coding
-        if (amount < 0) {
-            //amount should be over $0 but will be formatted with string transaction to be negative
-            System.out.println("Please enter an amount over $0");
-            return;
-        }
-        //allows to enter negative and saves format as negative for make payment
-        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + (-amount);
-        saveTransaction(transaction);
-    }
 
     private static void displayLedger() {
         boolean inLedger = true;
@@ -141,81 +82,7 @@ public class Main {
             }
         }
     }
-    private static List<String> loadTransactions() {
-        //we must continue to call array to refresh entries
-        List<String> transactions = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                transactions.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println("No transaction found, Make a transaction first. ");
-        }
-        //shows newest transactions first by reversing collection
-        Collections.reverse(transactions);
-        return transactions;
 
-    }
-    private static void displayAllTransactions() {
-        System.out.println("- All Transactions -");
-        //formatting to make it look nice, newline characters and format specifiers
-        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
-        System.out.println("|----------------------------------------------------------------------|");
-
-        //must call array list everytime to refresh csv file inputs
-        List<String> transactions = loadTransactions();
-        for (String transaction : transactions) {
-            String[] parts = transaction.split("\\|");
-            if (parts.length == 5) {
-                System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
-            }
-        }
-        //sends you back to ledger menu
-        System.out.println("Please press Enter to continue...");
-        scanner.nextLine();
-    }
-    private static void displayDeposits() {
-        System.out.println("- Deposits -");
-        //formatting to make it look nice, newline characters and format specifiers
-        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
-        System.out.println("|----------------------------------------------------------------------|");
-
-        List<String> transactions = loadTransactions();
-        for (String transaction : transactions) {
-            String[] parts = transaction.split("\\|");
-            if (parts.length == 5) {
-                //using parts[4] as that determines if a transaction is payment or deposit
-                double amount = Double.parseDouble(parts[4]);
-                if (amount > 0) {
-                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
-                }
-            }
-        }
-        System.out.println("Please press Enter to continue...");
-        scanner.nextLine();
-
-    }
-    private static void displayPayments() {
-        System.out.println("- Deposits -");
-        //formatting to make it look nice, newline characters and format specifiers
-        System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
-        System.out.println("|----------------------------------------------------------------------|");
-
-        List<String> transactions = loadTransactions();
-        for (String transaction : transactions) {
-            String[] parts = transaction.split("\\|");
-            if (parts.length == 5) {
-                double amount = Double.parseDouble(parts[4]);
-                if (amount < 0) {
-                    System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", parts[0], parts[1], parts[2], parts[3], parts[4]);
-                }
-            }
-        }
-        System.out.println("Please press Enter to continue...");
-        scanner.nextLine();
-
-    }
     private static void displayReportsScreen() {
         boolean reports = true;
         while (reports) {
