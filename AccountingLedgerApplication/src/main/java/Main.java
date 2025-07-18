@@ -12,7 +12,7 @@ import static model.Transaction.*;
 
 public class Main {
     //final bc they are not going to change
-    private static final String filePath = "C:/Users/rsant/pluralsight/capstone-1/AccountingLedgerApplication/src/main/resources/transactions.csv";
+    private static final String filePath = "/pluralsight/capstone-1/AccountingLedgerApplication/src/main/resources/transactions.csv";
     private static final DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     //can be resigned for various tasks through the code
