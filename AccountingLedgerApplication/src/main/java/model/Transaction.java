@@ -7,10 +7,10 @@ import java.util.*;
 
 public class Transaction {
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm");
-    private static final String filePath = "transactions.txt";
+    public static final Scanner scanner = new Scanner(System.in);
+    public static final DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    public static final String filePath = "transactions.txt";
 
 
     public static void addDeposit() {
@@ -61,7 +61,7 @@ public class Transaction {
         System.out.println("Payment Added Successfully!");
     }
 
-    private static void saveTransaction(String transaction) {
+    public static void saveTransaction(String transaction) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(transaction + "\n");
         } catch (IOException e) {
