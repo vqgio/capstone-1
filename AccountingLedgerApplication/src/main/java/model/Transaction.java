@@ -13,7 +13,7 @@ public class Transaction {
     private static final String filePath = "transactions.txt";
 
 
-    private static void addDeposit() {
+    public static void addDeposit() {
         System.out.println("Add Deposit");
         LocalDateTime now = LocalDateTime.now();
         String date  = now.format(yearMonthFormatter);
@@ -37,7 +37,7 @@ public class Transaction {
         System.out.println("Deposit Added Successfully!");
     }
 
-    private static void makePayment() {
+    public static void makePayment() {
         System.out.println("- Make Payment -");
         System.out.println("Please remember this is a debit account only action");
         LocalDateTime now = LocalDateTime.now();
@@ -69,7 +69,7 @@ public class Transaction {
         }
     }
 
-    private static List<String> loadTransactions() {
+    public static List<String> loadTransactions() {
         List<String> transactions = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -83,7 +83,7 @@ public class Transaction {
         return transactions;
     }
 
-    private static void displayAllTransactions() {
+    public static void displayAllTransactions() {
         System.out.println("- All Transactions -");
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
@@ -99,7 +99,7 @@ public class Transaction {
         scanner.nextLine();
     }
 
-    private static void displayDeposits() {
+    public static void displayDeposits() {
         System.out.println("- Deposits -");
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
@@ -118,7 +118,7 @@ public class Transaction {
         scanner.nextLine();
     }
 
-    private static void displayPayments() {
+    public static void displayPayments() {
         System.out.println("- Payments -");
         System.out.printf("%-12s %-10s %-25s %-15s %-10s\n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("|----------------------------------------------------------------------|");
