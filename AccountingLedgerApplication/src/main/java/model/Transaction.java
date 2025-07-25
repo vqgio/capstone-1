@@ -10,7 +10,7 @@ public class Transaction {
     public static final Scanner scanner = new Scanner(System.in);
     public static final DateTimeFormatter yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter hourMinuteFormatter = DateTimeFormatter.ofPattern("HH:mm");
-    public static final String filePath = "transactions.txt";
+    public static final String filePath = "C:\\Users\\rsant\\pluralsight\\capstone-1\\AccountingLedgerApplication\\src\\main\\resources\\transactions.csv";
 
 
     public static void addDeposit() {
