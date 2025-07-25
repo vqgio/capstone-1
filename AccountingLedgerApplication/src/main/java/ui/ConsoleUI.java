@@ -8,6 +8,8 @@ import static model.Transaction.displayDeposits;
 import static model.Transaction.displayPayments;
 import static service.ReportService.*;
 import static service.ReportService.customSearch;
+import static service.TransactionService.addDeposit;
+import static service.TransactionService.makePayment;
 
 public class ConsoleUI {
     //can be resigned for various tasks through the code
